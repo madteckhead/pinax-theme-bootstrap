@@ -110,7 +110,19 @@ AUTHOR = "James Tauber"
 AUTHOR_EMAIL = "jtauber@jtauber.com"
 URL = "http://github.com/pinax/pinax-theme-bootstrap"
 VERSION = __import__(PACKAGE).__version__
+INSTALL_REQUIRES = [
+    "django-forms-bootstrap>=2.0.3",
+]
 
+try:
+    import django
+except ImportError:
+    # Django was unable to be imported; assume user will take care of our
+    # dependencies too
+    pass
+else:
+    if django.VERSION < (1, 4, 0):
+        INSTALL_REQUIRES.append("django-staticfiles>=1.1.2")
 
 setup(
     name=NAME,
@@ -125,16 +137,14 @@ setup(
     package_data=find_package_data(PACKAGE, only_in_packages=False),
     include_package_data=True,
     classifiers=[
-        "Development Status :: 3 - Alpha",
+        "Development Status :: 5 - Production/Stable",
         "Environment :: Web Environment",
         "Intended Audience :: Developers",
-        "License :: OSI Approved :: BSD License",
+        "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
         "Programming Language :: Python",
         "Framework :: Django",
     ],
     zip_safe=False,
-    install_requires=[
-        "django-staticfiles==1.1.2",
-    ],
+    install_requires=INSTALL_REQUIRES,
 )
