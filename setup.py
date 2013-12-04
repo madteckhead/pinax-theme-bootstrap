@@ -8,7 +8,8 @@ from setuptools import setup, find_packages
 
 
 def read(fname):
-    return codecs.open(os.path.join(os.path.dirname(__file__), fname)).read()
+    fn = os.path.join(os.path.dirname(__file__), fname)
+    return codecs.open(fn, "rb", "utf-8").read()
 
 
 # Provided as an attribute, so you can append to these instead
@@ -111,7 +112,7 @@ AUTHOR_EMAIL = "jtauber@jtauber.com"
 URL = "http://github.com/pinax/pinax-theme-bootstrap"
 VERSION = __import__(PACKAGE).__version__
 INSTALL_REQUIRES = [
-    "django-forms-bootstrap>=2.0.3",
+    "django-bootstrap-form>=3.0.0",
 ]
 
 try:
